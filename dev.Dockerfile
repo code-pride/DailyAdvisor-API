@@ -1,10 +1,10 @@
 FROM openjdk:8-jdk-alpine
 
 RUN mkdir -p /backend
-WORKDIR /backend
+WORKDIR /DailyAdvisor-API
 
-ADD /backend /backend
+ADD /DailyAdvisor-API /DailyAdvisor-API
 
-VOLUME ["/backend"]
+VOLUME ["/DailyAdvisor-API"]
 
 ENTRYPOINT [ "sh", "./updateAndRunDevelopment.sh" ]
