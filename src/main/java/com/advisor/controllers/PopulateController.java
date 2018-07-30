@@ -30,6 +30,8 @@ import java.util.List;
 @RestController
 public class PopulateController {
 
+    private static boolean populated = false;
+
     @Autowired
     private UserService userService;
 
@@ -57,6 +59,9 @@ public class PopulateController {
     @RequestMapping(value = { "/populate" }, method = RequestMethod.GET)
     public ResponseEntity populate() throws Exception
     {
+        if(populated) {
+            return new ResponseEntity(HttpStatus.OK);
+        }
         //save roles
         List<Role> roles = new ArrayList<>();
         roles.add(new Role("ADMIN"));
@@ -125,6 +130,8 @@ public class PopulateController {
         } catch (DataRepositoryException e) {
             return new ResponseEntity(e.getStandardResponseCode());
         }
+
+        populated = true;
         return new ResponseEntity(HttpStatus.OK);
     }
 }

@@ -8,7 +8,7 @@ import static io.restassured.RestAssured.given;
 
 public class SecurityTest {
 
-    private static String FRONTEND_URL = "http://localhost:8091/";
+    private static String BACKEND_URL = "http://localhost:8080/api/";
     private static String CSRF_TOKEN_COOKIE_NAME = "XSRF-TOKEN";
     private static String CSRF_TOKEN_HEADER_NAME = "X-XSRF-TOKEN";
 
@@ -19,7 +19,7 @@ public class SecurityTest {
     public void setUp() {
         this.csrf = given()
                 .when()
-                .get(FRONTEND_URL + "csrf")
+                .get(BACKEND_URL + "csrf")
                 .then()
                 .statusCode(200)
                 .and()
@@ -30,7 +30,7 @@ public class SecurityTest {
 
         given()
                 .when()
-                .get(FRONTEND_URL + "populate")
+                .get(BACKEND_URL + "populate")
                 .then()
                 .statusCode(200);
     }
@@ -46,7 +46,7 @@ public class SecurityTest {
                 .header(CSRF_TOKEN_HEADER_NAME, csrf)
                 .body(loginRequest)
                 .when()
-                .post(FRONTEND_URL + "login")
+                .post(BACKEND_URL + "login")
                 .then()
                 .statusCode(200)
                 .and()
@@ -63,7 +63,7 @@ public class SecurityTest {
                 .header(CSRF_TOKEN_HEADER_NAME, csrf)
                 .cookie("_secu",jwt)
                 .when()
-                .get(FRONTEND_URL + "getUserProfile")
+                .get(BACKEND_URL + "getUserProfile")
                 .then()
                 .statusCode(200);
     }
@@ -75,7 +75,7 @@ public class SecurityTest {
                 .header(CSRF_TOKEN_HEADER_NAME, csrf)
                 .cookie("_secu",jwt)
                 .when()
-                .post(FRONTEND_URL + "logout")
+                .post(BACKEND_URL + "logout")
                 .then()
                 .statusCode(200);
     }
@@ -87,7 +87,7 @@ public class SecurityTest {
                 .header(CSRF_TOKEN_HEADER_NAME, csrf)
                 .cookie("_secu",jwt)
                 .when()
-                .get(FRONTEND_URL + "getUserProfile")
+                .get(BACKEND_URL + "getUserProfile")
                 .then()
                 .statusCode(403);
     }
