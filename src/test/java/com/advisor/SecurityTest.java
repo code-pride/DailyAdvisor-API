@@ -8,7 +8,7 @@ import static io.restassured.RestAssured.given;
 
 public class SecurityTest {
 
-    private static String BACKEND_URL = "http://localhost:8080/api/";
+    private static String BACKEND_URL = "http://localhost:8091/";
     private static String CSRF_TOKEN_COOKIE_NAME = "XSRF-TOKEN";
     private static String CSRF_TOKEN_HEADER_NAME = "X-XSRF-TOKEN";
 
