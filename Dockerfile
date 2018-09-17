@@ -22,6 +22,7 @@ ENV GOOGLE_CLIENT_ID clientId
 ENV GOOGLE_CLIENT_SECRET clientSecret
 ENV SRING_MAIL_USERNAME mailserver
 ENV SPRING_MAIL_PASSWORD password
+ENV EUREKA_URL localhost:8761
 
 
 RUN mkdir -p /app
@@ -36,6 +37,7 @@ CMD ["java", \
     "--spring.datasource.url=jdbc:postgresql://${POSTGRES_HOST}/daily_advisor", \
     "--spring.datasource.username=${DATASOURCE_USERNAME}", \
     "--spring.datasource.password=${DATASOURCE_PASSWORD}", \
+    "--eureka.client.serviceurl.defaultzone=http://${EUREKA_URL}/eureka/", \
     "--server.port=${SERVER_PORT}", \
     "--facebook.client.clientId=${FACEBOOK_CLIENT_ID}", \
     "--facebook.client.clientSecret=${FACEBOOK_CLIENT_SECRET}", \
