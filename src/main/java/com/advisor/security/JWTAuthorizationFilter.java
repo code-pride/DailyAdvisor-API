@@ -23,7 +23,7 @@ public class JWTAuthorizationFilter extends AbstractAuthenticationProcessingFilt
     private JWTManager jwtManager;
 
     public JWTAuthorizationFilter(JWTManager jwtManager) {
-        super("/");
+        super("/**");
         this.jwtManager = jwtManager;
     }
 
