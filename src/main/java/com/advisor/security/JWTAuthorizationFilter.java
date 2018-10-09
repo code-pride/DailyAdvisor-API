@@ -22,9 +22,8 @@ public class JWTAuthorizationFilter extends AbstractAuthenticationProcessingFilt
 
     private JWTManager jwtManager;
 
-    public JWTAuthorizationFilter(JWTManager jwtManager, RequestMatcher matcher) {
-        super("/");
-        this.setRequiresAuthenticationRequestMatcher(matcher);
+    public JWTAuthorizationFilter(JWTManager jwtManager) {
+        super("/**");
         this.jwtManager = jwtManager;
     }
 
